@@ -1,2 +1,2 @@
 # tempVideo
-[here](https://kerianvaraine.github.io/tempVideo/)
+[here](https://kerianvaraine.github.io/TheatVideo/)

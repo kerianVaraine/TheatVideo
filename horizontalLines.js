@@ -28,7 +28,7 @@ let hLines = {
     resetBar: function (i) {
         //reset bar traits
         this.bars[i].growth = this.perlin[i]; //noise based
-        this.bars[i].lineLength = round(random(0, windowWidth - 700));
+        this.bars[i].lineLength = round(random(0, windowWidth));
         this.bars[i].width = 0;
     },
 
@@ -55,7 +55,7 @@ let Bar = function () {
     this.x = 0;
     this.y;
     this.width = 0;
-    this.lineLength = round(random(0, windowWidth - 700));
+    this.lineLength = round(random(0, windowWidth));
     this.height = windowHeight / (hLines.canvasDivision * 15); //this changes a lot too!
     this.col = 200;
     this.growth; // speed of sidways growth
@@ -82,6 +82,7 @@ let Bar = function () {
         this.y = (windowHeight / hLines.canvasDivision) * y;
         this.x < windowWidth ? this.width += growth : this.width = 0; //this starts length
         this.width > this.lineLength ? this.x += speed : this.x = 0; //this brings tail of bar towards its end
+
     }
 
     this.animateVertical = function (growth, speed, thickness, x) {

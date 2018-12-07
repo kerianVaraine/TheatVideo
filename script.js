@@ -1,6 +1,14 @@
 let sliders = {};
 let buttons = {};
+let numbers ={};
 let canv;
+/////////capture stuff
+let capturer = new CCapture({
+    format:'png', framerate: 60, timeLimit: 3
+})
+let cCanvas;
+//////////
+
 
 function setup() {
     canv = createCanvas(windowWidth - 10, windowHeight - 100);
@@ -11,19 +19,25 @@ function setup() {
     createDot();
 
     //DOM stuff to play with
-    //sliders for speed and growth traits
+    //sliders for speed and growth traits, along with text displaying numbers.
     sliders.lineGrowth = createSlider(0, 50, 0.7, 0.01);
     sliders.lineGrowth.id('lineGrowth');
+    numbers.lineGrowth = createP(sliders.lineGrowth.value());
     sliders.lineSpeed = createSlider(0, 50, 0.4, 0.01);
     sliders.lineSpeed.id('lineSpeed');
+    numbers.lineSpeed = createP(sliders.lineSpeed.value());
     sliders.thickness = createSlider(0, 150, 0.4, 0.01);
     sliders.thickness.id('thickness');
+    numbers.thickness = createP(sliders.thickness.value());
+
     //buttons for direction of line travel
     buttons.horizontal = createButton('horizontal', 0);
     buttons.both = createButton('both', 2);
     buttons.vertical = createButton('vertical', 1);
 
-
+    //capturer stuff
+    canv = document.getElementById("defaultCanvas0");
+    // capturer.start();
 }
 
 function draw() {
@@ -47,5 +61,12 @@ function draw() {
     buttons.vertical.mousePressed(function() {hLines.direction = 1});
 
     hLines.resetTest();
+
+    // //value updates for displays.
+    numbers.lineGrowth.elt.innerHTML = sliders.lineGrowth.value();
+    numbers.lineSpeed.elt.innerHTML = sliders.lineSpeed.value();
+    numbers.thickness.elt.innerHTML = sliders.thickness.value();
+    //capturer stuff
+    capturer.capture(canvas);
 
 }
